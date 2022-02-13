@@ -25,7 +25,9 @@ void main(List<String> arguments) async {
     final pubSpecContent = await pubSpecFile.readAsString();
     final pubSpecYamlEditor = YamlEditor(pubSpecContent);
     print(
-      '$platformPackageName value before update: ${pubSpecYamlEditor.parseAt(['dependencies'])}',
+      '$platformPackageName value before update: ${pubSpecYamlEditor.parseAt(
+        ['dependencies', platformPackageName],
+      )}',
     );
     pubSpecYamlEditor.update(
       ['dependencies', platformPackageName],
@@ -33,7 +35,9 @@ void main(List<String> arguments) async {
     );
     pubSpecFile.writeAsString(pubSpecYamlEditor.toString());
     print(
-      '$platformPackageName value after update: ${pubSpecYamlEditor.parseAt(['dependencies'])}',
+      '$platformPackageName value after update: ${pubSpecYamlEditor.parseAt(
+        ['dependencies', platformPackageName],
+      )}',
     );
   } catch (e) {
     print('Something went wrong error: $e');

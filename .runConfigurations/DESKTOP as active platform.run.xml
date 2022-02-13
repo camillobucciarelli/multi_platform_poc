@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="DESKTOP as active platform" type="ShConfigurationType">
+  <configuration default="false" name="DESKTOP as active platform" type="ShConfigurationType" folderName="pre-build">
     <option name="SCRIPT_TEXT" value="flutter pub run platform_manager:set_build_platform desktop &amp;&amp; flutter pub get" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />

@@ -2,7 +2,7 @@
   <configuration default="false" name="desktop app" type="FlutterRunConfigurationType" factoryName="Flutter">
     <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
     <method v="2">
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="desktop" run_configuration_type="ShConfigurationType" />
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="DESKTOP as active platform" run_configuration_type="ShConfigurationType" />
     </method>
   </configuration>
 </component>

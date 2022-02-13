@@ -13,6 +13,7 @@ dependencies:
   platform_app: 
     path: flutter_app/platform_specific_apps/desktop
   ####################################################
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_test:

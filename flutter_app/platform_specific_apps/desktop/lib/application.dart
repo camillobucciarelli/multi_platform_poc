@@ -5,10 +5,14 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const FluentApp(
+    return FluentApp(
       home: ScaffoldPage(
         content: Center(
-          child: Text('I\'m a desktop application'),
+          child: Column(
+            children: const [
+              Text('I\'m a desktop application'),
+            ],
+          ),
         ),
       ),
     );

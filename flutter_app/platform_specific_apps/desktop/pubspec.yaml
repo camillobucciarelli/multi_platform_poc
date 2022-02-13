@@ -1,6 +1,7 @@
 name: platform_app
 description: Desktop application
 version: 0.0.1
+publish_to: none
 
 environment:
   sdk: ">=2.16.1 <3.0.0"
@@ -9,11 +10,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  data_application_layer:
+    path: ../../data_layer/data_application_layer
   fluent_ui: ^3.9.0
+  get_it: ^7.2.0
+  injectable: ^1.5.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.4
+  build_runner: ^2.1.7
+  injectable_generator: ^1.5.3
 
 flutter:
