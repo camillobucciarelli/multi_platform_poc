@@ -1,0 +1,25 @@
+name: multi_platform_poc
+description: A new Flutter project to test multi-platform implementation with multi-module single repo.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  #### THIS DEPENDENCY CHANGE AT BUILD TIME ##########
+  platform_app: 
+    path: flutter_app/platform_specific_apps/desktop
+  ####################################################
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.4
+  platform_manager:
+    path: flutter_app/platform_specific_apps/platform_manager
+
+flutter:
+  uses-material-design: true
