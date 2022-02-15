@@ -23,7 +23,7 @@ public class WeatherService {
 
     public Flux<UpdateEvent> updateWeather(Weather weather) {
         Flux<Long> interval = Flux.interval(Duration.ofSeconds(1));
-        Flux<UpdateEvent> events = Flux.fromStream(Stream.iterate(new UpdateEvent(0, weather, LocalDateTime.now()), i -> i.getPercentage() < 100, i -> new UpdateEvent(getUpdatePercentage(i.getPercentage()), weather, LocalDateTime.now())));
+        Flux<UpdateEvent> events = Flux.fromStream(Stream.iterate(new UpdateEvent(0, weather, LocalDateTime.now()), i -> i.getPercentage() <= 100, i -> new UpdateEvent(getUpdatePercentage(i.getPercentage()), weather, LocalDateTime.now())));
         return Flux.zip(events, interval, (key, value) -> key);
     }
 
@@ -42,12 +42,15 @@ public class WeatherService {
     }
 
     private int getUpdatePercentage(int i) {
+        if (i == 100) {
+            return 101;
+        }
         int newUpdatePercentage = new Random().nextInt(50) + i;
         return Math.min(newUpdatePercentage, 100);
     }
 
     private String getTemperature() {
-        String[] temperatures = "19C,19.5C,20C,20.5C,21C,21.5C,22C,22.5C,23C,23.5C,24C" .split(",");
+        String[] temperatures = "19C,19.5C,20C,20.5C,21C,21.5C,22C,22.5C,23C,23.5C,24C".split(",");
         return temperatures[new Random().nextInt(temperatures.length)];
     }
 }

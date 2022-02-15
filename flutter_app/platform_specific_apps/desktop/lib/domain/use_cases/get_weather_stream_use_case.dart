@@ -1,4 +1,6 @@
+import 'package:data_application_layer/data/entities/weather_event.dart';
 import 'package:data_application_layer/domain/repositories/weather_repository.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
@@ -7,5 +9,5 @@ class GetWeatherStreamUseCase {
 
   GetWeatherStreamUseCase(this._repository);
 
-  Future<Stream<String>> call() => _repository.getTemperatures();
+  Either<Exception, Stream<WeatherEvent>> call() => _repository.getWeatherStreamed();
 }

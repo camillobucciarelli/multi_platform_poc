@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,5 +16,5 @@ FutureOr<void> loadDataApplicationLayerInjectorModule(GetIt appInjector) {
 @module
 abstract class RegisterModule {
   @lazySingleton
-  Dio get dio => Dio()..interceptors.add(LogInterceptor());
+  String get baseUrl => 'http://localhost:8080';
 }

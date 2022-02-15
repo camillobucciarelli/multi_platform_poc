@@ -2,15 +2,49 @@ import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platform_app/dependency_injection/dependency_injection.dart';
 import 'package:platform_app/presentation/bloc/meal_categories_cubit.dart';
-import 'package:platform_app/presentation/bloc/weather_cubit.dart';
+import 'package:platform_app/presentation/widgets/weather_view.dart';
 
-class Application extends StatelessWidget {
+import 'presentation/widgets/weather_stream_view.dart';
+
+class Application extends StatefulWidget {
   const Application({Key? key}) : super(key: key);
 
   @override
+  State<Application> createState() => _ApplicationState();
+}
+
+class _ApplicationState extends State<Application> {
+  var _index = 0;
+
+  @override
   Widget build(BuildContext context) {
-    return const FluentApp(
-      home: WeatherView(),
+    return FluentApp(
+      home: NavigationView(
+        appBar: const NavigationAppBar(
+          title: Text('Multi platform POC'),
+        ),
+        pane: NavigationPane(
+          selected: _index,
+          onChanged: (index) => setState(() => _index = index),
+          items: [
+            PaneItem(
+              icon: const Icon(FluentIcons.dataflows),
+              title: const Text('Stream'),
+            ),
+            PaneItem(
+              icon: const Icon(FluentIcons.download),
+              title: const Text('Normal'),
+            ),
+          ],
+        ),
+        content: NavigationBody(
+          index: _index,
+          children: const [
+            WeatherStreamView(),
+            WeatherView(),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -61,27 +95,6 @@ class MealCategories extends StatelessWidget {
                   );
                 },
               );
-            }
-            return Container();
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class WeatherView extends StatelessWidget {
-  const WeatherView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<WeatherCubit>(
-      create: (context) => injector(),
-      child: ScaffoldPage(
-        content: BlocBuilder<WeatherCubit, WeatherState>(
-          builder: (context, state) {
-            if (state is WeatherData) {
-              return Center(child: Text(state.data.toString()));
             }
             return Container();
           },

@@ -8,11 +8,11 @@ import '../data_sources/meal_data_source.dart';
 
 @LazySingleton(as: MealCategoryRepository)
 class MealRepositoryImpl implements MealCategoryRepository {
-  final MealDataSource _remoteDataSource;
+  //final MealDataSource _remoteDataSource;
   final MealDataSource _localDataSource;
 
   MealRepositoryImpl(
-    @Named('remote') this._remoteDataSource,
+    //@Named('remote') this._remoteDataSource,
     @Named('local') this._localDataSource,
   );
 
@@ -22,14 +22,14 @@ class MealRepositoryImpl implements MealCategoryRepository {
   ) async {
     try {
       final localResponse = await _localDataSource.getCategories();
-      final List<MealCategoryEntity> categories;
+      /*final List<MealCategoryEntity> categories;
       if (localResponse.categories.isNotEmpty) {
         categories = localResponse.categories;
       } else {
         final remoteResponse = await _remoteDataSource.getCategories();
         categories = remoteResponse.categories;
-      }
-      return Right(categories.map(mapper).toList());
+      }*/
+      return Right(localResponse.categories.map(mapper).toList());
     } catch (e) {
       return Left(Exception(e.toString()));
     }

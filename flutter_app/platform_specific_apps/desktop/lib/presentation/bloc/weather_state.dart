@@ -5,8 +5,30 @@ abstract class WeatherState {
   const WeatherState();
 }
 
-class WeatherData extends WeatherState {
-  final String data;
+class WeatherInitial extends WeatherState {
+  const WeatherInitial();
+}
 
-  const WeatherData(this.data);
+class WeatherGetData extends WeatherState {
+  final Weather weather;
+
+  const WeatherGetData(this.weather);
+}
+
+class WeatherGetError extends WeatherState {
+  final String error;
+
+  const WeatherGetError(this.error);
+}
+
+class WeatherSendData extends WeatherState {
+  final Weather weather;
+
+  const WeatherSendData(this.weather);
+}
+
+class WeatherSendError extends WeatherState {
+  final String error;
+
+  const WeatherSendError(this.error);
 }
