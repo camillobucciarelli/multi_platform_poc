@@ -5,7 +5,11 @@ class MealCategoryModel {
   final String thumbnail;
   final String description;
 
-  MealCategoryModel({required this.name, required this.thumbnail, required this.description});
+  MealCategoryModel({
+    required this.name,
+    required this.thumbnail,
+    required this.description,
+  });
 
   factory MealCategoryModel.fromEntity(MealCategoryEntity entity) {
     return MealCategoryModel(

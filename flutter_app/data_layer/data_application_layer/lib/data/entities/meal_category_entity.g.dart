@@ -26,11 +26,3 @@ MealCategoryEntity _$MealCategoryEntityFromJson(Map<String, dynamic> json) =>
         'description': 'strCategoryDescription'
       },
     );
-
-Map<String, dynamic> _$MealCategoryEntityToJson(MealCategoryEntity instance) =>
-    <String, dynamic>{
-      'idCategory': instance.id,
-      'strCategory': instance.name,
-      'strCategoryThumb': instance.thumbnail,
-      'strCategoryDescription': instance.description,
-    };

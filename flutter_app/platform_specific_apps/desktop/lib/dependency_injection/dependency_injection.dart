@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:data_application_layer/data_application_layer.dart';
+import 'package:data_application_layer/dependency_injection/dependency_injection.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:platform_app/dependency_injection/dependency_injection.config.dart';
@@ -11,11 +11,8 @@ late final GetIt injector;
   initializerName: r'loadInjectionModule',
   asExtension: true,
 )
-void injectionModule() {}
-
-FutureOr<void> loadPlatformSpecificAppInjectorModule(GetIt appInjector) {
+FutureOr<void> loadPlatformSpecificAppInjectorModule(GetIt appInjector) async {
   injector = appInjector;
-  appInjector
-    ..loadDataApplicationLayerInjectorModule()
-    ..loadInjectionModule();
+  appInjector.loadInjectionModule();
+  await loadDataApplicationLayerInjectorModule(appInjector);
 }

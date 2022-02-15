@@ -1,21 +1,37 @@
-
 import 'package:data_application_layer/data/entities/meal_category_entity.dart';
 import 'package:data_application_layer/domain/models/model_mapper.dart';
 import 'package:data_application_layer/domain/repositories/meal_category_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 
+import '../data_sources/meal_data_source.dart';
+
 @LazySingleton(as: MealCategoryRepository)
 class MealRepositoryImpl implements MealCategoryRepository {
-  @override
-  Either<Exception, M> getMealCategory<M>(ModelMapper<MealCategoryEntity, M> mapper) {
-    final entity = MealCategoryEntity.fromJson({
-      "idCategory": "1",
-      "strCategory": "Beef",
-      "strCategoryThumb": "https://www.themealdb.com/images/category/beef.png",
-      "strCategoryDescription": "Beef is the culinary name for meat from cattle, particularly skeletal muscle. Humans have been eating beef since prehistoric times.[1] Beef is a source of high-quality protein and essential nutrients.[2]"
-    });
-    return Right(mapper(entity));
-  }
+  final MealDataSource _remoteDataSource;
+  final MealDataSource _localDataSource;
 
+  MealRepositoryImpl(
+    @Named('remote') this._remoteDataSource,
+    @Named('local') this._localDataSource,
+  );
+
+  @override
+  Future<Either<Exception, List<M>>> getMealCategories<M>(
+    ModelMapper<MealCategoryEntity, M> mapper,
+  ) async {
+    try {
+      final localResponse = await _localDataSource.getCategories();
+      final List<MealCategoryEntity> categories;
+      if (localResponse.categories.isNotEmpty) {
+        categories = localResponse.categories;
+      } else {
+        final remoteResponse = await _remoteDataSource.getCategories();
+        categories = remoteResponse.categories;
+      }
+      return Right(categories.map(mapper).toList());
+    } catch (e) {
+      return Left(Exception(e.toString()));
+    }
+  }
 }

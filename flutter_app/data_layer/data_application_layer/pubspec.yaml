@@ -10,11 +10,13 @@ dependencies:
   # Network client
   retrofit: ^3.0.1+1
   dio: ^4.0.4
+  web_socket_channel: ^2.1.0
+  http: ^0.13.4
   # Database
   drift: ^1.4.0
   sqlite3_flutter_libs: ^0.5.3
   path_provider: ^2.0.9
-  path: ^1.8.1
+  path: ^1.8.0
   # Serialization / Deserialization
   json_annotation: ^4.4.0
   fpdart: ^0.0.14
@@ -28,5 +30,6 @@ dev_dependencies:
   drift_dev: ^1.4.0
   json_serializable: ^6.1.4
   injectable_generator: ^1.5.3
+  retrofit_generator: ^4.0.1
 
 flutter:
