@@ -1,3 +1,3 @@
 abstract class WeatherRepository {
-  Stream getTemperatures();
+  Future<Stream<String>> getTemperatures();
 }

@@ -12,8 +12,12 @@ class WeatherCubit extends Cubit<WeatherState> {
   final GetWeatherStreamUseCase _useCase;
   late final StreamSubscription _subscription;
 
-  WeatherCubit(this._useCase) : super(const WeatherData(null)) {
-    _subscription = _useCase().listen((event) {
+  WeatherCubit(this._useCase) : super(const WeatherData('no data yet')) {
+    _init();
+  }
+
+  FutureOr<void> _init() async {
+    _subscription = (await _useCase()).listen((event) {
       emit(WeatherData(event));
     });
   }

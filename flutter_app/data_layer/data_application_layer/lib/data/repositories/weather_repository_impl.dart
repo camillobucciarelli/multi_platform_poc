@@ -9,5 +9,5 @@ class WeatherRepositoryImpl implements WeatherRepository {
   WeatherRepositoryImpl(this._dataSource);
 
   @override
-  Stream getTemperatures() => _dataSource.getTemperatures();
+  Future<Stream<String>> getTemperatures() => _dataSource.getTemperatures();
 }

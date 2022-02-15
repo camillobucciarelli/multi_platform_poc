@@ -7,5 +7,5 @@ class GetWeatherStreamUseCase {
 
   GetWeatherStreamUseCase(this._repository);
 
-  Stream call() => _repository.getTemperatures();
+  Future<Stream<String>> call() => _repository.getTemperatures();
 }

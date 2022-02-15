@@ -6,7 +6,7 @@ abstract class WeatherState {
 }
 
 class WeatherData extends WeatherState {
-  final dynamic data;
+  final String data;
 
   const WeatherData(this.data);
 }

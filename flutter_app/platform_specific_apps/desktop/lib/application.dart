@@ -81,7 +81,7 @@ class WeatherView extends StatelessWidget {
         content: BlocBuilder<WeatherCubit, WeatherState>(
           builder: (context, state) {
             if (state is WeatherData) {
-              return Text(state.data.toString());
+              return Center(child: Text(state.data.toString()));
             }
             return Container();
           },
